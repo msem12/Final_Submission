@@ -1,0 +1,105 @@
+package com.company;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        //Use to create display menu
+
+        ArrayList<String> displaymenu = new ArrayList<String>();
+        displaymenu.add("Red-Hot Spicy Doritos  $2.99");
+        displaymenu.add("Cool Ranch Doritos  $2.99");
+        displaymenu.add("Coke  $0.99");
+        displaymenu.add("Diet Coke  $0.99");
+        displaymenu.add("Pepsi  $0.99");
+        displaymenu.add("Five Hour Energy  $3.99");
+        displaymenu.add("Sunflower Seeds  $0.99");
+        displaymenu.add("Peanuts  $0.99");
+        displaymenu.add("Kombucha  $3.99");
+        displaymenu.add("Fruit Snacks  $5.00");
+
+        //Use to create array of items and prices
+        ArrayList<String> inventory = new ArrayList<String>();
+        ArrayList<Double> price = new ArrayList<Double>();
+        inventory.add("Red-Hot Spicy Doritos");
+        price.add(2.99);
+        inventory.add("Cool Ranch Doritos");
+        price.add(2.99);
+        inventory.add("Coke");
+        price.add(0.99);
+        inventory.add("Diet Coke");
+        price.add(0.99);
+        inventory.add("Pepsi");
+        price.add(0.99);
+        inventory.add("Five Hour Energy");
+        price.add(3.99);
+        inventory.add("Sunflower Seeds");
+        price.add(0.99);
+        inventory.add("Peanuts");
+        price.add(0.99);
+        inventory.add("Kombucha");
+        price.add(3.99);
+        inventory.add("Fruit Snacks");
+        price.add(5.00);
+
+        //Use to print out list of all items
+        System.out.println("Hello, Welcome to Da Corner Store, see todays specials!");
+
+        System.out.println(" ");
+        for (String element : displaymenu) {
+            System.out.println(element);
+        }
+
+        //Create array to store entered values
+        ArrayList<String> orders = new ArrayList<String>();
+        ArrayList<Integer> ordersquantity = new ArrayList<Integer>();
+        String input;
+        Scanner add = new Scanner(System.in);
+
+        String custnames = "";
+        double total;
+        double grandTotal = 0;
+        System.out.println(" ");
+        System.out.print("Hello! Tell me your name.");
+        System.out.println(" ");
+        while(!(input = add.nextLine()).equals("close")){
+            custnames += "\n" + input;
+            total = 0;
+            System.out.println("Hello " + input.toUpperCase() + ", enter the name of your desired items. Press # to complete your order.)");
+            while(!(input = add.nextLine()).equals("#")) {
+                for(String i:inventory) {
+                    if(i.contains(input) || i.equalsIgnoreCase(input)) {
+                        total += price.get(inventory.indexOf(i));
+                        custnames += "\n\t"+input;
+                        if(!orders.contains(input)) {
+                            orders.add(input);
+                            ordersquantity.add(1);
+                        }
+                        else {
+                            int index = orders.indexOf(input);
+                            ordersquantity.set(index, ordersquantity.get(index) + 1);
+                        }
+                        break;
+                    }
+                }
+            }
+            custnames += "\n\t\t"+total+"\n";
+            grandTotal += total;
+            System.out.print(" ");
+            System.out.print("Add new customer? To close for the day enter 'close'.");
+        }
+        System.out.println("Todays Orders: ");
+        System.out.println(custnames);
+        System.out.println(" ");
+        for (int i = 0, customerOrderSize = orders.size(); i < customerOrderSize; i++) {
+            String TotalItems = orders.get(i);
+            System.out.println("Today's closing drawer contains: $" + grandTotal);
+
+        }
+        }
+
+
+    }
+
