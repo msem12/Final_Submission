@@ -94,7 +94,7 @@ public class Main {
         System.out.println(custnames);
         System.out.println(" ");
         for (int i = 0, customerOrderSize = orders.size(); i < customerOrderSize; i++) {
-            String TotalItems = orders.get(i);
+            String totalorders = orders.get(i);
             System.out.println("Today's closing drawer contains: $" + grandTotal);
 
         }
